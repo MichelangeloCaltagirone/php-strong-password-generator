@@ -1,68 +1,5 @@
-<?php
-require_once __DIR__ . "/functions.php";
-
-// function randomNum () {
-//     return chr(mt_rand(48, 57));
-// };
-// function randomSpecialChar () {
-//     return chr(mt_rand(91, 96));
-// };
-// function randomLowerAlphabet () {
-//     return chr(mt_rand(97, 122));
-// };
-// function randomUpperAlphabet () {
-//     return chr(mt_rand(65, 90));
-// };
-
-
-// function generatePwd ($userLenght){
-//     $newPwd = '';
-
-//     $newPwd .= randomNum();
-//     $newPwd .= randomSpecialChar();
-//     $newPwd .= randomLowerAlphabet();
-//     $newPwd .= randomUpperAlphabet();
-
-//     if($userLenght > 4) {
-
-//         $userLenght = $userLenght - 4;
-
-//         for($i = 0; $i < $userLenght; $i++) {
-
-//             $choice = rand(0,3);
-
-//             if($choice == 0) {
-//                 $newChar = randomNum();
-//             } elseif ($choice == 1) {
-//                 $newChar = randomSpecialChar();
-//             } elseif ($choice == 2) {
-//                 $newChar = randomLowerAlphabet();
-//             } else {
-//                 $newChar = randomUpperAlphabet();
-//             };
-
-//             // futura flag per l'opzione di ripetere o meno caratteri
-//             if(true) {
-//                 if(!str_contains($newPwd, $newChar)) {
-//                     $newPwd .= $newChar;
-//                 } else {
-//                     $i--;
-//                 }
-//             } else {
-//                 $newPwd .= $newChar;
-//             }       
-//         };
-//     }
-//     return str_shuffle($newPwd);
-// };
-
-// $userLenght = $_GET['pwdLenght'];
-
-// $pwdGenerated = generatePwd($userLenght);
-
-
-
-?>
+<!-- Importazione del file functions all'interno di questo -->
+<?php require_once __DIR__ . "/functions.php" ?>
 
 
 <!DOCTYPE html>
@@ -81,9 +18,11 @@ require_once __DIR__ . "/functions.php";
 
     <h1 class="text-center my-5">Strong PWD Generator</h1>
 
+    <!-- Form for the User -->
     <form class="form-control" action="" method="GET">
 
         <label class="label-form" for="pwdLenght">Indica da quanti caratterri comporre la password</label>
+        <!-- Input for the lenght of the new password -->
         <input required type="number" name="pwdLenght" min="4">
 
         <div class="d-block">
@@ -94,12 +33,18 @@ require_once __DIR__ . "/functions.php";
     </form>
 
     <div class="mt-4">
-    <?php if(isset($_GET['pwdLenght']) && !empty($_GET['pwdLenght'])) { ?>
-        <span class="fs-4">La nuova password generata è: </span>
-        <span class="fw-bold text-danger"> <?= generatePwd($userLenght) ?> </span>
-    <?php } else { ?>
-        <span>Specifiche di generazione non ancora indicate</span>
-    <?php } ?>
+        <!-- Punto in cui chiamerò la funzione per poter generare la nuova password: al primo caricamento della pagina, con la variabile
+        utile non ancora settata, mostro un messaggio -->
+
+        <!-- Solo se ho la varibile dalla GET e non è vuota -->
+        <?php if(isset($_GET['pwdLenght']) && !empty($_GET['pwdLenght'])) { ?>            
+            <span class="fs-4">La nuova password generata è: </span>
+            <!-- Chiamo la funzione per generare il dato richiesto -->
+            <span class="fw-bold text-danger"> <?= generatePwd($userLenght) ?> </span>
+        <?php } else { ?>
+            <!-- Mostro il messaggio se non ho disponibile la variabile richiesta all'utente tramite Form -->
+            <span>Specifiche di generazione non ancora indicate</span>
+        <?php } ?>
     </div>
 
 </div>

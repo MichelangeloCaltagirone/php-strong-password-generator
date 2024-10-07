@@ -1,16 +1,23 @@
-<?php 
+<?php
+// Solo se ho la variabile della GET settata, la assegno  
 if(isset($_GET['pwdLenght'])){
     $userLenght = $_GET['pwdLenght'];
 }
+
+// Funzione per generare randomicamente un carattere, partendo da un sottoinsieme del codice ASCII
+// Per i Numeri
 function randomNum () {
     return chr(mt_rand(48, 57));
 };
+// Per i Caratteri Speciali
 function randomSpecialChar () {
     return chr(mt_rand(91, 96));
 };
+// Per lettere Minuscole
 function randomLowerAlphabet () {
     return chr(mt_rand(97, 122));
 };
+// Per lettere Maiuscole
 function randomUpperAlphabet () {
     return chr(mt_rand(65, 90));
 };
@@ -24,6 +31,9 @@ function generatePwd ($userLenght){
     $newPwd .= randomLowerAlphabet();
     $newPwd .= randomUpperAlphabet();
 
+    // a questo punto la nuova password è sempre popolata con questi 4 campi (numero, carattere speciale, una maiuscola, una minuscola)
+
+    // Se l'utente ha inserito un numero superiore a 4, devo produrre nuovi caratteri randomici per comporre la password
     if($userLenght > 4) {
 
         $userLenght = $userLenght - 4;
