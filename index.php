@@ -1,11 +1,56 @@
-<?php 
+<?php
+
+function randomNum () {
+    return chr(mt_rand(48, 57));
+};
+function randomSpecialChar () {
+    return chr(mt_rand(91, 96));
+};
+function randomLowerAlphabet () {
+    return chr(mt_rand(97, 122));
+};
+function randomUpperAlphabet () {
+    return chr(mt_rand(65, 90));
+};
+
 
 function generatePwd ($userLenght){
     $newPwd = '';
-    for($i = 0; $i < $userLenght; $i++) {
-        $newPwd .= chr(mt_rand(97, 122));
-    };
-    return $newPwd;
+
+    $newPwd .= randomNum();
+    $newPwd .= randomSpecialChar();
+    $newPwd .= randomLowerAlphabet();
+    $newPwd .= randomUpperAlphabet();
+
+    if($userLenght > 4) {
+
+        $userLenght = $userLenght - 4;
+
+        for($i = 0; $i < $userLenght; $i++) {
+
+            $choice = rand(0,3);
+
+            if($choice == 0) {
+                $newChar = randomNum();
+            } elseif ($choice == 1) {
+                $newChar = randomSpecialChar();
+            } elseif ($choice == 2) {
+                $newChar = randomLowerAlphabet();
+            } else {
+                $newChar = randomUpperAlphabet();
+            };
+
+            // futura flag per l'opzione di ripetere o meno caratteri
+            if(true) {
+                if(!str_contains($newPwd, $newChar)) {
+                    $newPwd .= $newChar;
+                } else {
+                    $i--;
+                }
+            }        
+        };
+    }
+    return str_shuffle($newPwd);
 };
 
 $userLenght = $_GET['pwdLenght'];
@@ -38,7 +83,7 @@ $pwdGenerated = generatePwd($userLenght);
     <form class="form-control" action="" method="GET">
 
         <label class="label-form" for="pwdLenght">Indica da quanti caratterri comporre la password</label>
-        <input required type="number" name="pwdLenght" min="1">
+        <input required type="number" name="pwdLenght" min="4">
 
         <div class="d-block">
             <button class="p-2 mt-3 btn btn-primary btn-lg" type="submit">Gerera</button>
