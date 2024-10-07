@@ -94,10 +94,12 @@ require_once __DIR__ . "/functions.php";
     </form>
 
     <div class="mt-4">
-
+    <?php if(isset($_GET['pwdLenght']) && !empty($_GET['pwdLenght'])) { ?>
         <span class="fs-4">La nuova password generata è: </span>
         <span class="fw-bold text-danger"> <?= generatePwd($userLenght) ?> </span>
-
+    <?php } else { ?>
+        <span>Specifiche di generazione non ancora indicate</span>
+    <?php } ?>
     </div>
 
 </div>

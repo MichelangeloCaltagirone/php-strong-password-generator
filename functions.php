@@ -1,7 +1,7 @@
 <?php 
-
-$userLenght = $_GET['pwdLenght'];
-
+if(isset($_GET['pwdLenght'])){
+    $userLenght = $_GET['pwdLenght'];
+}
 function randomNum () {
     return chr(mt_rand(48, 57));
 };
