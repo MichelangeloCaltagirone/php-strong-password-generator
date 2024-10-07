@@ -47,7 +47,9 @@ function generatePwd ($userLenght){
                 } else {
                     $i--;
                 }
-            }        
+            } else {
+                $newPwd .= $newChar;
+            }       
         };
     }
     return str_shuffle($newPwd);
