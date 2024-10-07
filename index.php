@@ -1,8 +1,16 @@
 <?php 
 
-function randomChart (){
+function generatePwd ($userLenght){
+    $newPwd = '';
+    for($i = 0; $i < $userLenght; $i++) {
+        $newPwd .= chr(mt_rand(97, 122));
+    };
+    return $newPwd;
+};
 
-}
+$userLenght = $_GET['pwdLenght'];
+
+$pwdGenerated = generatePwd($userLenght);
 
 
 ?>
@@ -38,6 +46,13 @@ function randomChart (){
         </div>
 
     </form>
+
+    <div class="mt-4">
+
+        <span class="fs-4">La nuova password generata è: </span>
+        <span class="fw-bold text-danger"> <?= $pwdGenerated ?> </span>
+
+    </div>
 
 </div>
 
