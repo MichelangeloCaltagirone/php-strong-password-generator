@@ -1,69 +1,68 @@
 <?php
+require_once __DIR__ . "/functions.php";
 
-function randomNum () {
-    return chr(mt_rand(48, 57));
-};
-function randomSpecialChar () {
-    return chr(mt_rand(91, 96));
-};
-function randomLowerAlphabet () {
-    return chr(mt_rand(97, 122));
-};
-function randomUpperAlphabet () {
-    return chr(mt_rand(65, 90));
-};
+// function randomNum () {
+//     return chr(mt_rand(48, 57));
+// };
+// function randomSpecialChar () {
+//     return chr(mt_rand(91, 96));
+// };
+// function randomLowerAlphabet () {
+//     return chr(mt_rand(97, 122));
+// };
+// function randomUpperAlphabet () {
+//     return chr(mt_rand(65, 90));
+// };
 
 
-function generatePwd ($userLenght){
-    $newPwd = '';
+// function generatePwd ($userLenght){
+//     $newPwd = '';
 
-    $newPwd .= randomNum();
-    $newPwd .= randomSpecialChar();
-    $newPwd .= randomLowerAlphabet();
-    $newPwd .= randomUpperAlphabet();
+//     $newPwd .= randomNum();
+//     $newPwd .= randomSpecialChar();
+//     $newPwd .= randomLowerAlphabet();
+//     $newPwd .= randomUpperAlphabet();
 
-    if($userLenght > 4) {
+//     if($userLenght > 4) {
 
-        $userLenght = $userLenght - 4;
+//         $userLenght = $userLenght - 4;
 
-        for($i = 0; $i < $userLenght; $i++) {
+//         for($i = 0; $i < $userLenght; $i++) {
 
-            $choice = rand(0,3);
+//             $choice = rand(0,3);
 
-            if($choice == 0) {
-                $newChar = randomNum();
-            } elseif ($choice == 1) {
-                $newChar = randomSpecialChar();
-            } elseif ($choice == 2) {
-                $newChar = randomLowerAlphabet();
-            } else {
-                $newChar = randomUpperAlphabet();
-            };
+//             if($choice == 0) {
+//                 $newChar = randomNum();
+//             } elseif ($choice == 1) {
+//                 $newChar = randomSpecialChar();
+//             } elseif ($choice == 2) {
+//                 $newChar = randomLowerAlphabet();
+//             } else {
+//                 $newChar = randomUpperAlphabet();
+//             };
 
-            // futura flag per l'opzione di ripetere o meno caratteri
-            if(true) {
-                if(!str_contains($newPwd, $newChar)) {
-                    $newPwd .= $newChar;
-                } else {
-                    $i--;
-                }
-            } else {
-                $newPwd .= $newChar;
-            }       
-        };
-    }
-    return str_shuffle($newPwd);
-};
+//             // futura flag per l'opzione di ripetere o meno caratteri
+//             if(true) {
+//                 if(!str_contains($newPwd, $newChar)) {
+//                     $newPwd .= $newChar;
+//                 } else {
+//                     $i--;
+//                 }
+//             } else {
+//                 $newPwd .= $newChar;
+//             }       
+//         };
+//     }
+//     return str_shuffle($newPwd);
+// };
 
-$userLenght = $_GET['pwdLenght'];
+// $userLenght = $_GET['pwdLenght'];
 
-$pwdGenerated = generatePwd($userLenght);
+// $pwdGenerated = generatePwd($userLenght);
+
 
 
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -97,7 +96,7 @@ $pwdGenerated = generatePwd($userLenght);
     <div class="mt-4">
 
         <span class="fs-4">La nuova password generata è: </span>
-        <span class="fw-bold text-danger"> <?= $pwdGenerated ?> </span>
+        <span class="fw-bold text-danger"> <?= generatePwd($userLenght) ?> </span>
 
     </div>
 
